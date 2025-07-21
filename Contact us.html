@@ -1,1 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Smart Algos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Light gray-blue background */
+            color: #1A202C; /* Dark text */
+            padding-top: 72px; /* Add padding to body to prevent content from hiding behind fixed header */
+        }
+        .gradient-blue {
+            background: linear-gradient(to right, #3B82F6, #2563EB); /* Blue gradient */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        /* Custom animation for algorithm flow */
+        .algo-flow {
+            position: relative;
+            animation: float-up-slow 4s ease-in-out infinite; /* Apply the new float-up-slow animation */
+        }
+        @keyframes float-up-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } /* Moves up by 10px */
+        }
+
+        /* Dropdown specific styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow: hidden; /* Ensures rounded corners apply to children */
+            top: 100%; /* Position below the trigger */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            padding: 0.5rem 0; /* py-2 */
+        }
+
+        .dropdown-content a {
+            color: #4A5568; /* gray-700 */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #E2E8F0; /* gray-200 */
+            color: #3B82F6; /* blue-600 */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* New animations for liveliness */
+        .nav-link-animation {
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .nav-link-animation:hover {
+            transform: scale(1.05);
+        }
+
+        /* Keyframes for fade-in-up animation */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Keyframes for slide-in-from-bottom animation */
+        @keyframes slide-in-from-bottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-heading-animation {
+            animation: slide-in-from-bottom 1.5s ease-out forwards; /* Increased duration */
+            animation-delay: 0.3s; /* Adjusted delay */
+        }
+        .cta-paragraph-animation {
+            animation: slide-in-from-bottom 1.5s ease-out forwards; /* Increased duration */
+            animation-delay: 0.6s; /* Adjusted delay */
+        }
+
+        /* Form specific styles */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #CBD5E0; /* gray-300 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-size: 1rem;
+            color: #4A5568; /* gray-700 */
+            background-color: #F7FAFC; /* gray-50 */
+            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #3B82F6; /* blue-500 */
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* blue-500 with opacity */
+        }
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .submit-button {
+            background: linear-gradient(to right, #3B82F6, #2563EB); /* Blue gradient */
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Section - Made fixed/sticky -->
+    <header class="bg-white card-shadow py-4 px-6 md:px-10 lg:px-16 fixed top-0 w-full z-50">
+        <nav class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center space-x-2">
+                <!-- Logo and Company Name - Made clickable to return to the top of the page -->
+                <a href="#" class="flex items-center space-x-2">
+                    <!-- Removed the SVG element for the star icon -->
+                    <span class="text-2xl font-bold text-blue-800">Smart Algos</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <!-- Main Navigation Links -->
+                <a href="Homepage.html" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 nav-link-animation">Home</a>
+                
+                <!-- Dropdown Menu -->
+                <div class="dropdown">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 inline-flex items-center cursor-pointer nav-link-animation">
+                        More
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="About us.html">About Us</a>
+                        <a href="Contact us.html">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <button class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Contact Us Content Section -->
+    <main class="flex-grow py-16 px-6 md:px-10 lg:px-16">
+        <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-blue-800 leading-tight mb-4">
+                Get In <span class="gradient-blue bg-clip-text text-transparent">Touch</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-8">
+                We're always excited to hear from you! Whether you have a question about our innovative algorithms, want to provide feedback on our services, are interested in a potential collaboration, or just want to connect, our team at Smart Algos is here to listen.
+            </p>
+            <p class="text-lg md:text-xl text-gray-600 mb-12">
+                Please use the form below to send us a message. We strive to respond to all inquiries as quickly as possible, typically within 24-48 business hours. Your input is valuable to us as we continue to build a safer and smarter digital world.
+            </p>
+
+            <!-- Contact Form -->
+            <div class="bg-white rounded-lg card-shadow p-8 md:p-10 lg:p-12 text-left">
+                <!-- Form action updated to use FormSubmit.co for direct email sending -->
+                <form action="https://formsubmit.co/ulhaqazlaan@gmail.com" id="contactForm" method="POST">
+                    <!-- IMPORTANT: This input disables FormSubmit's default reCAPTCHA -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Required for FormSubmit to redirect to a thank you page -->
+                    <!-- Note: The _next value is set to a placeholder. Replace "https://yourdomain.com/thankyou.html" with your actual thank you page URL. -->
+                    
+                    <!-- Sets the subject line of the email you receive -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission from Smart Algos!">
+                    <!-- Sends an auto-response to the user who filled out the form -->
+                    <input type="hidden" name="_autoresponse" value="Thank you for contacting Smart Algos! We have received your message and will get back to you soon.">
+                    <!-- Uses a clean email template for the received email -->
+                    <input type="hidden" name="_template" value="box">
+
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Inquiry about Smart Algos" required>
+                    </div>
+                    <div class="mb-8">
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Your Message</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" id="submitButton" class="submit-button">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Call to Action Section - Rephrased for app discovery -->
+    <section class="gradient-blue py-16 px-6 md:px-10 lg:px-16 text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 cta-heading-animation">Discover the Future of Apps</h2>
+            <p class="text-lg md:text-xl mb-8 opacity-90 cta-paragraph-animation">
+                At Smart Algos, we are dedicated to designing and developing groundbreaking applications that integrate cutting-edge intelligence and provide unparalleled user experiences.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-10 lg:px-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2025 Smart Algos. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="privacy policy.html" class="text-gray-300 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="terms of service.html" class="text-gray-300 hover:text-white transition duration-300">Terms of Service</a>
+                <a href="sitemap.html" class="text-gray-300 hover:text-white transition duration-300">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const contactForm = document.getElementById('contactForm');
+        const submitButton = document.getElementById('submitButton');
+
+        contactForm.addEventListener('submit', function(event) {
+            // Check if the form is valid using the browser's built-in validation
+            if (contactForm.checkValidity()) {
+                // Prevent the default form submission immediately
+                event.preventDefault();
+
+                // Change button text to "Sending..." and disable it
+                submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
+
+                // After a very short delay, change to "Sent!" and then submit the form.
+                // This gives a brief moment for "Sent!" to be visible before redirection.
+                setTimeout(() => {
+                    submitButton.textContent = 'Sent!';
+                    // Submit the form which will trigger the FormSubmit.co redirect
+                    contactForm.submit(); 
+                }, 100); // 100ms delay to show "Sent!"
+            }
+            // If the form is not valid, the browser will display validation messages,
+            // and the event.preventDefault() won't be called, so the form won't submit.
+        });
+    </script>
+</body>
+</html>
 
