@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - Smart Algos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Light gray-blue background */
+            color: #1A202C; /* Dark text */
+            padding-top: 72px; /* Add padding to body to prevent content from hiding behind fixed header */
+        }
+        .gradient-blue {
+            background: linear-gradient(to right, #3B82F6, #2563EB); /* Blue gradient */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        /* Custom animation for algorithm flow */
+        .algo-flow {
+            position: relative;
+            animation: float-up-slow 4s ease-in-out infinite; /* Apply the new float-up-slow animation */
+        }
+        @keyframes float-up-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } /* Moves up by 10px */
+        }
+
+        /* Dropdown specific styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow: hidden; /* Ensures rounded corners apply to children */
+            top: 100%; /* Position below the trigger */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            padding: 0.5rem 0; /* py-2 */
+        }
+
+        .dropdown-content a {
+            color: #4A5568; /* gray-700 */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #E2E8F0; /* gray-200 */
+            color: #3B82F6; /* blue-600 */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Team member card specific styles */
+        .team-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            opacity: 0; /* Start hidden for fade-in effect */
+            animation: fade-in-up 1.2s ease-out forwards; /* Increased duration */
+        }
+        .team-card:hover {
+            transform: translateY(-8px); /* Slightly more pronounced lift */
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
+        }
+
+        .nav-link-animation {
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .nav-link-animation:hover {
+            transform: scale(1.05);
+        }
+
+        /* Keyframes for fade-in-up animation */
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Keyframes for slide-in-from-bottom animation */
+        @keyframes slide-in-from-bottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-heading-animation {
+            animation: slide-in-from-bottom 1.5s ease-out forwards; /* Increased duration */
+            animation-delay: 0.3s; /* Adjusted delay */
+        }
+        .cta-paragraph-animation {
+            animation: slide-in-from-bottom 1.5s ease-out forwards; /* Increased duration */
+            animation-delay: 0.6s; /* Adjusted delay */
+        }
+
+        /* Delay for individual team cards */
+        /* Adjusted delays for the new layout */
+        .team-card:nth-child(1) { animation-delay: 0.1s; } /* Faizan */
+        .team-card:nth-child(2) { animation-delay: 0.3s; } /* Azlaan */
+        .team-card:nth-child(3) { animation-delay: 0.5s; } /* Avyaan */
+        .team-card:nth-child(4) { animation-delay: 0.7s; } /* Rayyan */
+        .team-card:nth-child(5) { animation-delay: 0.9s; } /* Aryan */
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="bg-white card-shadow py-4 px-6 md:px-10 lg:px-16 fixed top-0 w-full z-50">
+        <nav class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center space-x-2">
+                <a href="#" class="flex items-center space-x-2">
+                    <!-- Removed the SVG element for the star icon -->
+                    <span class="text-2xl font-bold text-blue-800">Smart Algos</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="Homepage.html" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 nav-link-animation">Home</a>
+                
+                <div class="dropdown">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 inline-flex items-center cursor-pointer nav-link-animation">
+                        More
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="About us.html">About Us</a>
+                       
+                        <a href="Contact us.html">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            <button class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main class="flex-grow py-16 px-6 md:px-10 lg:px-16">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-blue-800 leading-tight mb-4">
+                Meet Our <span class="gradient-blue bg-clip-text text-transparent">Amazing Team</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                We are a passionate group of innovators, thinkers, and problem-solvers united by a common goal: to create a safer and smarter digital world for kids. Get to know the faces behind Smart Algos!
+            </p>
+
+            <!-- Founders Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Faizan Ul Haq - Founder -->
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center team-card">
+                    <img class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-blue-200" src="https://placehold.co/128x128/90CDF4/FFFFFF?text=F" alt="Faizan Ul Haq">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Faizan Ul Haq</h3>
+                    <p class="text-blue-500 font-medium mb-3">Founder</p>
+                    <p class="text-gray-600 text-center">Age: 37 years old</p>
+                    <p class="text-gray-600 text-center">Faizan is the visionary leader of Smart Algos, guiding the company with a clear vision for innovation and safety in the digital space for children.</p>
+                </div>
+
+                <!-- Azlaan Ul Haq - Founder & Lead Developer -->
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center team-card">
+                    <img class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-blue-200" src="https://placehold.co/128x128/90CDF4/FFFFFF?text=A" alt="Azlaan Ul Haq">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Azlaan Ul Haq</h3>
+                    <p class="text-blue-500 font-medium mb-3">Founder & Lead Developer</p>
+                    <p class="text-gray-600 text-center">Age: 10 years old</p>
+                    <p class="text-gray-600 text-center">Azlaan is a coding prodigy with a knack for building robust and intuitive applications. He's a key mind behind many of our core algorithms.</p>
+                </div>
+            </div>
+
+            <!-- Other Team Members Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Avyaan Monga -->
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center team-card">
+                    <img class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-blue-200" src="https://placehold.co/128x128/90CDF4/FFFFFF?text=A" alt="Avyaan Monga">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Avyaan Monga</h3>
+                    <p class="text-blue-500 font-medium mb-3">QA Lead & Developer</p>
+                    <p class="text-gray-600 text-center">Age: 10 years old</p>
+                    <p class="text-gray-600 text-center">Avyaan ensures our apps are not only functional but also beautiful and easy for kids to use. His keen eye for detail and development skills are crucial for quality.</p>
+                </div>
+
+                <!-- Rayyan Ul Haq -->
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center team-card">
+                    <img class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-blue-200" src="https://placehold.co/128x128/90CDF4/FFFFFF?text=R" alt="Rayyan Ul Haq">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Rayyan Ul Haq</h3>
+                    <p class="text-blue-500 font-medium mb-3">Tester & Designer</p>
+                    <p class="text-gray-600 text-center">Age: 7 years old</p>
+                    <p class="text-gray-600 text-center">Rayyan is our meticulous tester, ensuring every feature works perfectly. He also brings a creative eye to design, contributing fresh ideas to the user experience.</p>
+                </div>
+
+                <!-- Aryan Mantry -->
+                <div class="bg-white rounded-lg card-shadow p-6 flex flex-col items-center team-card">
+                    <img class="w-32 h-32 rounded-full object-cover mb-4 border-4 border-blue-200" src="https://placehold.co/128x128/90CDF4/FFFFFF?text=A" alt="Aryan Mantry">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">Aryan Mantry</h3>
+                    <p class="text-blue-500 font-medium mb-3">Frontend Developer & Project Manager</p>
+                    <p class="text-gray-600 text-center">Age: 10 years old</p>
+                    <p class="text-gray-600 text-center">Aryan is a skilled frontend developer who crafts engaging user interfaces and also adeptly manages projects, ensuring smooth execution and timely delivery.</p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4 cta-heading-animation">Our Collaborative Spirit</h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto cta-paragraph-animation">
+                    Though each of us brings unique skills to the table, we believe in the power of teamwork. Our collaborative environment fosters creativity, continuous learning, and a shared commitment to our mission of creating positive digital experiences for children. We're more than just a team; we're a family dedicated to making a difference.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="gradient-blue py-16 px-6 md:px-10 lg:px-16 text-white text-center">
+        <div class="max-w-4xl mx-auto"> <h2 class="text-3xl md:text-4xl font-bold mb-6 cta-heading-animation">Discover the Future of Apps</h2>
+            <p class="text-lg md:text-xl mb-8 opacity-90 cta-paragraph-animation">
+                At Smart Algos, we are dedicated to designing and developing groundbreaking applications that integrate cutting-edge intelligence and provide unparalleled user experiences.
+            </p>
+            </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-10 lg:px-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2025 Smart Algos. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="privacy policy.html" class="text-gray-300 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="terms of service.html" class="text-gray-300 hover:text-white transition duration-300">Terms of Service</a>
+                <a href="sitemap.html" class="text-gray-300 hover:text-white transition duration-300">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for any future interactive elements or animations
+        // For now, the animations are purely CSS-based.
+        // You could add logic here for mobile menu toggling, form submissions, etc.
+    </script>
+</body>
+</html>
 
