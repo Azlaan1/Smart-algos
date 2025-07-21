@@ -1,1 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - Smart Algos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFA; /* Light gray-blue background */
+            color: #1A202C; /* Dark text */
+            padding-top: 72px; /* Add padding to body to prevent content from hiding behind fixed header */
+        }
+        .gradient-blue {
+            background: linear-gradient(to right, #3B82F6, #2563EB); /* Blue gradient */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.03);
+        }
+        /* Dropdown specific styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow: hidden; /* Ensures rounded corners apply to children */
+            top: 100%; /* Position below the trigger */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+            padding: 0.5rem 0; /* py-2 */
+        }
+
+        .dropdown-content a {
+            color: #4A5568; /* gray-700 */
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #E2E8F0; /* gray-200 */
+            color: #3B82F6; /* blue-600 */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Mobile menu overlay styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40; /* Below fixed header, above main content */
+            display: none; /* Hidden by default */
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Start off-screen */
+            width: 75%; /* Adjust width as needed */
+            max-width: 300px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 50; /* Above overlay */
+            padding-top: 4rem; /* Space for close button */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0; /* Slide in */
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #4A5568;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Section - Made fixed/sticky -->
+    <header class="bg-white card-shadow py-4 px-6 md:px-10 lg:px-16 fixed top-0 w-full z-50">
+        <nav class="flex items-center justify-between max-w-7xl mx-auto">
+            <div class="flex items-center space-x-2">
+                <!-- Logo and Company Name - Made clickable to return to the top of the page -->
+                <a href="Homepage.html" class="flex items-center space-x-2">
+                    <!-- Removed the SVG element for the star icon -->
+                    <span class="text-2xl font-bold text-blue-800">Smart Algos</span>
+                </a>
+            </div>
+            <div class="hidden md:flex space-x-4 items-center">
+                <!-- Main Navigation Links -->
+                <a href="Homepage.html" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2">Home</a>
+                
+                <!-- Dropdown Menu -->
+                <div class="dropdown">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 inline-flex items-center cursor-pointer">
+                        More
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="About us.html">About Us</a>
+                        <a href="our team.html">Our Team</a>
+                        <a href="Contact us.html">Contact Us</a>
+                    </div>
+                </div>
+                
+                <!-- User Profile / Sign Up / Login Buttons -->
+                <div id="authButtons" class="flex items-center space-x-4">
+                    <!-- These buttons will be dynamically updated by JavaScript -->
+                    <!-- The Sign Up and Login buttons are removed from here -->
+                </div>
+            </div>
+            <button id="mobileMenuButton" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Open mobile menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu Sidebar -->
+    <div id="mobileMenu" class="mobile-menu">
+        <button id="mobileMenuCloseButton" class="mobile-menu-close" aria-label="Close mobile menu">&times;</button>
+        <nav class="flex flex-col p-4 space-y-4">
+            <a href="Homepage.html" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2">Home</a>
+            <div class="relative">
+                <a href="#" id="mobileMoreDropdown" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 flex items-center justify-between cursor-pointer">
+                    More
+                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+                <div id="mobileDropdownContent" class="hidden flex-col pl-4 mt-2 space-y-2">
+                    <a href="About us.html" class="text-gray-700 hover:text-blue-600">About Us</a>
+                    <a href="our team.html" class="text-gray-700 hover:text-blue-600">Our Team</a>
+                    <a href="Contact us.html" class="text-gray-700 hover:text-blue-600">Contact Us</a>
+                </div>
+            </div>
+            <div id="mobileAuthButtons" class="flex flex-col space-y-4 mt-4">
+                <!-- These buttons will be dynamically updated by JavaScript -->
+                <!-- The Sign Up and Login buttons are removed from here -->
+            </div>
+        </nav>
+    </div>
+
+    <main class="flex-grow py-16 px-6 md:px-10 lg:px-16">
+        <div class="max-w-4xl mx-auto bg-white rounded-xl p-8 card-shadow">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-800 mb-8 text-center">Website Sitemap</h1>
+            
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-blue-700 mb-4">Main Pages</h2>
+                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                    <li><a href="Homepage.html" class="text-blue-600 hover:underline">Home</a></li>
+                    <li><a href="About us.html" class="text-blue-600 hover:underline">About Us</a></li>
+                    <li><a href="our team.html" class="text-blue-600 hover:underline">Our Team</a></li>
+                    <li><a href="Contact us.html" class="text-blue-600 hover:underline">Contact Us</a></li>
+                    <li><a href="privacy policy.html" class="text-blue-600 hover:underline">Privacy Policy</a></li>
+                    <li><a href="terms of service.html" class="text-blue-600 hover:underline">Terms of Service</a></li>
+                    <!-- Removed Sign Up and Login links -->
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-blue-700 mb-4">Other Links</h2>
+                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
+                    <li><a href="#" class="text-blue-600 hover:underline">Sitemap (You are here)</a></li>
+                    <!-- Add more links here as your site grows -->
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-10 lg:px-16">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2025 Smart Algos. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="privacy policy.html" class="text-gray-300 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="terms of service.html" class="text-gray-300 hover:text-white transition duration-300">Terms of Service</a>
+                <!-- Add more links here as your site grows -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get elements for mobile menu
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuCloseButton = document.getElementById('mobileMenuCloseButton');
+        const mobileMoreDropdown = document.getElementById('mobileMoreDropdown');
+        const mobileDropdownContent = document.getElementById('mobileDropdownContent');
+
+        // Function to open mobile menu
+        function openMobileMenu() {
+            mobileMenuOverlay.style.display = 'block';
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling body when menu is open
+        }
+
+        // Function to close mobile menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.style.display = 'none';
+            document.body.style.overflow = ''; // Restore body scrolling
+            mobileDropdownContent.classList.add('hidden'); // Ensure dropdown is hidden when menu closes
+        }
+
+        // Event listeners for mobile menu
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        mobileMenuCloseButton.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside menu
+
+        // Toggle mobile "More" dropdown
+        mobileMoreDropdown.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            mobileDropdownContent.classList.toggle('hidden');
+        });
+
+        // Function to update header based on login status (kept for consistency, though not directly used on this page)
+        function updateHeaderButtons() {
+            const authButtonsDiv = document.getElementById('authButtons');
+            const mobileAuthButtonsDiv = document.getElementById('mobileAuthButtons');
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+            const userName = sessionStorage.getItem('userName');
+
+            // Update desktop header buttons
+            if (isLoggedIn && userName) {
+                authButtonsDiv.innerHTML = `
+                    <div class="flex items-center space-x-2 cursor-pointer group relative">
+                        <div class="w-10 h-10 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center font-bold text-lg uppercase">
+                            ${userName.charAt(0)}
+                        </div>
+                        <span class="text-gray-700 font-medium hidden lg:block">${userName.split(' ')[0]}</span>
+                        <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10">
+                            <div class="px-4 py-2 text-gray-800 font-semibold border-b border-gray-200">Hello, ${userName.split(' ')[0]}!</div>
+                            <a href="#" onclick="handleLogout(event)" class="block px-4 py-2 text-red-600 hover:bg-red-50 hover:text-red-700">Logout</a>
+                        </div>
+                    </div>
+                `;
+            } else {
+                authButtonsDiv.innerHTML = `
+                    <!-- No Sign Up or Login buttons -->
+                `;
+            }
+
+            // Update mobile header buttons
+            if (mobileAuthButtonsDiv) { // Check if mobileAuthButtonsDiv exists
+                if (isLoggedIn && userName) {
+                    mobileAuthButtonsDiv.innerHTML = `
+                        <div class="flex items-center space-x-2 cursor-pointer group relative">
+                            <div class="w-10 h-10 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center font-bold text-lg uppercase">
+                                ${userName.charAt(0)}
+                            </div>
+                            <span class="text-gray-700 font-medium">${userName.split(' ')[0]}</span>
+                        </div>
+                        <a href="#" onclick="handleLogout(event); closeMobileMenu();" class="block px-4 py-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-md text-center">Logout</a>
+                    `;
+                } else {
+                    mobileAuthButtonsDiv.innerHTML = `
+                        <!-- No Sign Up or Login buttons -->
+                    `;
+                }
+            }
+        }
+
+        function handleLogout(event) {
+            event.preventDefault(); // Prevent default link behavior
+            sessionStorage.removeItem('isLoggedIn');
+            sessionStorage.removeItem('userName');
+            sessionStorage.removeItem('userEmail');
+            updateHeaderButtons(); // Update buttons immediately
+            // Optionally, show a logout message
+            // showMessageBox("Logged Out", "You have been successfully logged out.");
+        }
+
+        // Call this function when the page loads
+        document.addEventListener('DOMContentLoaded', updateHeaderButtons);
+    </script>
+</body>
+</html>
 
