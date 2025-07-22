@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>: 'Inter', sans-serif;
-            background-color: #F8FAFC; /* Light gray-blue background */
-            color: #1A202
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Algos Homepage</title>
@@ -11,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-familyC; /* Dark text */
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Light gray-blue background */
+            color: #1A202C; /* Dark text */
             padding-top: 72px; /* Add padding to body to prevent content from hiding behind fixed header */
         }
         .gradient-blue {
@@ -135,14 +135,19 @@
             <div class="flex items-center space-x-2">
                 <!-- Logo and Company Name - Made clickable to return to the top of the page -->
                 <a href="#" class="flex items-center space-x-2">
-                    <!-- Removed the SVG element for the star icon -->
+                    <!-- Embedded SVG for the logo placeholder. Replace this entire SVG with your <img> tag and actual logo URL. -->
+                    <svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" fill="white" rx="5"></rect>
+                        <path d="M10 7L14 17M14 7L10 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                     <span class="text-2xl font-bold text-blue-800">Smart Algos</span>
                 </a>
             </div>
             <div class="hidden md:flex space-x-4 items-center">
                 <!-- Main Navigation Links -->
                 <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2">Home</a>
-                
+
                 <!-- Dropdown Menu -->
                 <div class="dropdown">
                     <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300 rounded-md px-3 py-2 inline-flex items-center cursor-pointer">
@@ -157,7 +162,7 @@
                         <a href="Contact us.html">Contact Us</a>
                     </div>
                 </div>
-                
+
                 <!-- User Profile / Sign Up / Login Buttons -->
                 <div id="authButtons" class="flex items-center space-x-4">
                     <!-- These buttons will be dynamically updated by JavaScript -->
@@ -433,4 +438,3 @@
     </script>
 </body>
 </html>
-
